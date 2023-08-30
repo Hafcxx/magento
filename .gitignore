@@ -20,10 +20,12 @@ composer.lock
 COPYING.txt
 grunt-config.json.sample
 Gruntfile.js.sample
-index.php
+/index.php
 LICENSE.txt
 LICENSE_AFL.txt
 magento/
 nginx.conf.sample
 package.json.sample
 SECURITY.md
+.github/*
+
