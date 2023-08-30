@@ -1,0 +1,16 @@
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>PixelproTheme</title> <!-- your theme's name -->
+    <parent>Magento/luma</parent> <!-- the parent theme, in case your theme inherits from an existing theme -->
+    <media>
+        <preview_image>media/preview.jpg</preview_image> <!-- the path to your theme's preview image -->
+    </media>
+    <csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+        <policies>
+            <policy id="style-src">
+                <values>
+                    <value id="crudcrud" type="host">*.crudcrud.com</value>
+                </values>
+            </policy>
+        </policies>
+    </csp_whitelist>
+ </theme>
