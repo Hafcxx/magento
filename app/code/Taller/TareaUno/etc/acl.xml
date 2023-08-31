@@ -3,8 +3,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Taller_TareaUno::prud" title="Prud" sortOrder="51">
-                    <resource id="Taller_TareaUno::post" title="Posts" sortOrder="10"/>
+                <resource id="Taller_TareaUno::tareauno" title="TareaUno" sortOrder="51">
+                    <resource id="Taller_TareaUno::contacto" title="Contactos" sortOrder="10"/>
                 </resource>
                 
             </resource>

@@ -7,7 +7,7 @@ class Contacto extends \Magento\Framework\Model\AbstractModel implements \Magent
 	protected $_eventPrefix = 'taller_tareauno_contacto';
 	protected function _construct()
 	{
-		$this->_init('Taller\TareaUno\Model\ResourceModel\Post');
+		$this->_init('Taller\TareaUno\Model\ResourceModel\Contacto');
 	}
 	public function getIdentities()
 	{
