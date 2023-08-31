@@ -1,26 +1,39 @@
 require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
     const { createApp, ref, onMounted, defineComponent } = Vue
 
-    const componenteTest1 = defineComponent({
-        name: 'test-1',
+    const componenteFormulario = defineComponent({
+        name: 'formulario',
         setup() {
+            const bandera = ref(false)
+            const obtenerBandera = async() =>{
+                await $.ajax({
+                    url: 'http://magento.test/tareados/index/Tarea',
+                    type: 'GET',
+                    dataType: 'json',
+                    complete: function(response) {             
+                        bandera.value = response.responseJSON.bandera
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        console.log('Error happens. Try again.');
+                    }
+                });
+            }
             onMounted(()=>{
-                alert("test 1")
+                obtenerBandera()
             })
+            return {
+                bandera
+            }
         },
-        template: '<h1>hola</h1>'
+        template: "<h1>Bandera: {{ bandera }}</h1>"
     })
 
     const app = createApp({
         components: {
-            'test-1': componenteTest1
+            'formulario': componenteFormulario
         },
         setup() {
-            const message = ref('Hello vue!')
-
             onMounted(()=>{
-                alert("hola alerta")
-
                 $.ajax({
                     url: 'https://crudcrud.com/api/73032dcc184f49d085b8b639475ec61a/unicorns',
                     type: 'GET',
@@ -33,9 +46,6 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                     }
                 });
             })
-            return {
-                message
-            }
         }
     }).mount('#app')
 })
