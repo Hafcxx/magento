@@ -3,7 +3,7 @@ namespace Taller\TareaTres\Block;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\App\Request\Http;
 
-class Index extends \Magento\Framework\View\Element\Template
+class Detalles extends \Magento\Framework\View\Element\Template
 {
 	protected $httpClient;
 	protected $request;
@@ -23,7 +23,8 @@ class Index extends \Magento\Framework\View\Element\Template
 
 	public function getApiResponse()
 	{
-		$apiUrl = 'https://fakestoreapi.com/products';
+		$id = $this->request->getParam('id');
+		$apiUrl = 'https://fakestoreapi.com/products/'.$id;
 
 		$this->httpClient->get($apiUrl);
 		
@@ -33,15 +34,4 @@ class Index extends \Magento\Framework\View\Element\Template
 		return $responseObject;
 	}
 
-	public function getApiPokemon($poke_nombre)
-	{
-		$apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.$poke_nombre;
-		
-		$this->httpClient->get($apiUrl);
-		
-		$responseBody = $this->httpClient->getBody();
-		$responseObject = json_decode($responseBody);
-
-		return $responseObject;
-	}
 }

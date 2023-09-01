@@ -1,23 +1,10 @@
 <?php
     $apiResponse = $block->getApiResponse();
-    $currentUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
-    $currentUrl = explode('page=', $currentUrl)[0];
-    $currentUrl = explode('/?', $currentUrl);  
-    $nextPage =  $currentUrl[0].'?page='.$apiResponse->next;
-    $prevPage =  $currentUrl[0].'?page='.$apiResponse->previous;
 ?>
 
-<p> Busca un pokemon para conocer su información </p> 
-<input type="text" style="width: 200px;margin-right: 20px" placeholder="Ej: Pikachu"></input> 
-<button type="button">Buscar</button>
-<br>
-<a type="button" href="<?php echo $prevPage; ?>">Atras</a>
-<a type="button" href="<?php echo $nextPage; ?>">Siguiente</a>
-<br>
-
 <?php
-    foreach ($apiResponse->results as $item) {
-        echo $item->name;
+    foreach ($apiResponse as $item) {
+        echo  '<a href="detalles?id='.$item->id.'">'.$item->title.'</a>';
         echo '<br>';
     }
 ?>
