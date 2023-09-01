@@ -10,6 +10,6 @@ class Index extends \Magento\Framework\View\Element\Template
 		parent::__construct($context);
 	}
 	public function getBoolean(){
-		return false;
+		return true;
 	}
 }
