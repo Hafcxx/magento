@@ -1,9 +1,17 @@
 require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
-    const { createApp, ref, onMounted, defineComponent } = Vue
+    const { createApp, ref, onMounted, defineProps, defineComponent } = Vue
 
     const componenteFormulario = defineComponent({
         name: 'formulario',
-        setup() {
+        props:{
+            propsMostrar:{
+                type: Boolean
+            },
+            respuesta: {
+                type: String
+            }
+        },
+        setup(props) {
             const bandera = ref(false)
             const obtenerBandera = async() =>{
                 await $.ajax({
@@ -25,7 +33,7 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                 bandera
             }
         },
-        template: "<h1>Bandera: {{ bandera }}</h1>"
+        template: "h2<h1>Bandera del prop: {{ propsMostrar }}</h1> <p>Recibido del controlador por ajax: {{ bandera }}</p>"
     })
 
     const app = createApp({
@@ -34,7 +42,7 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
         },
         setup() {
             onMounted(()=>{
-                $.ajax({
+                /*$.ajax({
                     url: 'https://crudcrud.com/api/73032dcc184f49d085b8b639475ec61a/unicorns',
                     type: 'GET',
                     dataType: 'json',
@@ -44,7 +52,7 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                     error: function (xhr, status, errorThrown) {
                         console.log('Error happens. Try again.');
                     }
-                });
+                });*/
             })
         }
     }).mount('#app')

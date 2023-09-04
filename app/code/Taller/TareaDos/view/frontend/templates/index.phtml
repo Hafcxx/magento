@@ -1,4 +1,14 @@
 <div id="app">
-    <h1>Hola mundo!<?= $block->getBoolean(); ?></h1>
-    <formulario></formulario>
+    <h1>Resultado: </h1>
+    <div v-if="<?= $block->getBoolean()? 'true':'false'?>">
+        <formulario respuesta="OK"></formulario>
+    </div>
+    <div v-else >
+        <formulario respuesta="ERROR>"></formulario>
+    </div>
 </div>
+<script>
+    var boleano = <?= $block->getBoolean()? 'true':'false' ?>;
+
+    //$('#id').html(boleano)
+</script>
