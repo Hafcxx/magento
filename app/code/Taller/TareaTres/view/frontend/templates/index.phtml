@@ -1,0 +1,11 @@
+<?php
+    $apiResponse = $block->getApiResponse();
+?>
+
+<?php
+    foreach ($apiResponse as $item) {
+        echo  '<a href="detalles?id='.$item->id.'">'.$item->title.'</a>';
+        echo '<br>';
+    }
+?>
+
