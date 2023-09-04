@@ -33,15 +33,5 @@ class Index extends \Magento\Framework\View\Element\Template
 		return $responseObject;
 	}
 
-	public function getApiPokemon($poke_nombre)
-	{
-		$apiUrl = 'https://pokeapi.co/api/v2/pokemon/'.$poke_nombre;
-		
-		$this->httpClient->get($apiUrl);
-		
-		$responseBody = $this->httpClient->getBody();
-		$responseObject = json_decode($responseBody);
 
-		return $responseObject;
-	}
 }
