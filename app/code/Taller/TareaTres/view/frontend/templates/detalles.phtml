@@ -3,6 +3,11 @@
 ?>
 
 <?php
-    echo $apiResponse->title
+    if (isset($apiResponse->title)){
+        echo $apiResponse->title;
+    }else{
+        echo $apiResponse;
+    }
+    
 ?>
 
