@@ -67,6 +67,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 				);
 			}else{
+				/*
 				$tableName = $setup->getTable('contactos');
 
 				$setup->getConnection()->addColumn(
@@ -88,6 +89,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 						'comment' => 'Función'
 					]
 				);
+				*/
 			}
 		}
 		$installer->endSetup();
