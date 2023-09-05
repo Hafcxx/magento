@@ -1,0 +1,8 @@
+<?php 
+$contactsCollection = $block->getContactosCollection();
+
+foreach ($contactsCollection as $contacto) {
+    print_r($contacto->getData());     
+    echo "<br>";
+}
+?>

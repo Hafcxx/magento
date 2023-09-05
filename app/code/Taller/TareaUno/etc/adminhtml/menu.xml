@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Taller_TareaUno::tareauno" title="Tarea Uno" module="Taller_TareaUno" sortOrder="51" resource="Taller_TareaUno::TareaUno"/>
+        <add id="Taller_TareaUno::contacto" title="Contactos" module="Taller_TareaUno" sortOrder="10" action="taller_tareauno/contacto" resource="Taller_TareaUno::contacto" parent="Taller_TareaUno::tareauno"/>
+       
+    </menu>
+</config>
