@@ -1,8 +1,26 @@
 <?php 
 $contactsCollection = $block->getContactosCollection();
-
-foreach ($contactsCollection as $contacto) {
-    print_r($contacto->getData());     
-    echo "<br>";
-}
 ?>
+<div class="container">
+    <h3>Contactos</h3>
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($contactsCollection as $contacto) :?>
+            <tr>
+                <td><?= $contacto->getData()["id"] ?></td>
+                <td><?= Object($contacto->getData()->nombre_completo) ?></td>
+                <td><?= $contacto->getData()["correo"] ?></td>
+                <td><?= $contacto->getData()["telefono"] ?></td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+</div>
