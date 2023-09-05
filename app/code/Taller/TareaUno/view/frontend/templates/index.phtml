@@ -16,9 +16,9 @@ $contactsCollection = $block->getContactosCollection();
             <?php foreach ($contactsCollection as $contacto) :?>
             <tr>
                 <td><?= $contacto->getData()["id"] ?></td>
-                <td><?= Object($contacto->getData()->nombre_completo) ?></td>
+                <td><?= json_decode(json_encode($contacto->getData()))->nombre_completo ?></td>
                 <td><?= $contacto->getData()["correo"] ?></td>
-                <td><?= $contacto->getData()["telefono"] ?></td>
+                <td><?= ((object)$contacto->getData())->telefono ?></td>
             </tr>
             <?php endforeach;?>
         </tbody>
