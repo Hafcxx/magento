@@ -1,5 +1,5 @@
 var config = {
-    "paths": {
+    paths: {
         'vue': 'js/vue.global'
     }
 };

@@ -1,11 +1,44 @@
 <?php
-    $apiResponse = $block->getApiResponse();
+    $productos = $block->getApiResponse();
 ?>
 
-<?php
-    foreach ($apiResponse as $item) {
-        echo  '<a href="detalles?id='.$item->id.'">'.$item->title.'</a>';
-        echo '<br>';
+<div id="app" class="row">
+    <?php if($productos): foreach ($productos as $item) :?>
+        <div class="col-6 col-md-4 col-lg-3 p-1 p-4">
+            <a href="detalles?id=<?=$item->id?>">
+                <div class="card tarjeta-producto">
+                    <img src="<?= $item->image?>" alt="imagen de producto" class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title text-center"><?= $item->title?></h2>
+                        <h5 class="card-text text-center">$<?= $item->price?></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php endforeach; endif;?>
+    <productos></productos>
+</div>
+
+<style>
+    .card {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 15px;
+        height: 100%;
     }
-?>
-
+    .card-img-top {
+        height: 260px !important;
+        margin-bottom: 10px;
+        transition: all .5s ease-in-out;
+    }
+    .card-img-top:hover{
+        transform: scale(1.1);
+    }
+    .card-text {
+        font-size: 18px;
+        color: orange;
+        margin-top: 15px;
+    }
+    a, a:hover {
+        text-decoration: none;
+    }
+</style>
