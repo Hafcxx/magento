@@ -23,15 +23,25 @@ class Detalles extends \Magento\Framework\View\Element\Template
 
 	public function getApiResponse()
 	{
-		$id = $this->request->getParam('id');
-		$apiUrl = 'https://fakestoreapi.com/products/'.$id;
+		try {
+            $id = $this->request->getParam('id');
+            if (!is_numeric($id)) {
+                throw new \Exception('Parametro invalido: id debe ser un valor numerico');
+            }
 
-		$this->httpClient->get($apiUrl);
-		
-		$responseBody = $this->httpClient->getBody();
-		$responseObject = json_decode($responseBody);
+			$apiUrl = 'https://fakestoreapi.com/products/'.$id;
 
-		return $responseObject;
+			$this->httpClient->get($apiUrl);
+			
+			$responseBody = $this->httpClient->getBody();
+			$responseObject = json_decode($responseBody);
+	
+			return $responseObject;
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+
 	}
 
 }

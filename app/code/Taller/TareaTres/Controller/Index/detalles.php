@@ -11,7 +11,21 @@ class Detalles extends \Magento\Framework\App\Action\Action
 		return parent::__construct($context);
 	}
 	public function execute()
-	{
-		return $this->_pageFactory->create();
+	{	
+		/** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        $resultRedirect = $this->resultRedirectFactory->create();
+
+		try {
+            $id = $this->getRequest()->getParam('id');
+            if (!is_numeric($id)) {
+                throw new \Exception('Id no es númerico');
+            }
+
+            return $this->_pageFactory->create();
+        } catch (\Exception $e) {
+            $this->messageManager->addException($e, __('Parametro invalido:  Id debe ser un valor numérico'));
+			return $resultRedirect->setPath('*/*');
+        }
+
 	}
 }
