@@ -21,24 +21,32 @@ class Save extends Action
     public function execute()
     {
         if ($this->getRequest()->isPost()) {
+            /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+            $resultRedirect = $this->resultRedirectFactory->create();
             try {
                 $data = $this->getRequest()->getPostValue();
-
-                $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
-                $result->setData(['message' => $data]);
                 
+                /*
+                $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+                $result->setData(['message' => $data['numero']]);
+                
+                return $result;
+                */
+                if (!is_numeric($data['numero'])) {
+                    throw new \Exception('El número de tarjeta es invalido');
+                }        
 
                 if (!empty($data)) {
                     $this->Tarjeta->setData($data);
                     $this->Tarjeta->save();
-                    return $result;
-                    $this->messageManager->addSuccessMessage(__('Data saved successfully.'));
+                    
+                    $this->messageManager->addSuccessMessage(__('Tarjeta guardada correctamente'));
+                    return $resultRedirect->setPath('*/*');
                 }
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage(__('An error occurred while saving data.'));
+                $this->messageManager->addErrorMessage(__('Error: '.$e->getMessage()));
+                return $resultRedirect->setPath('*/*');
             }
         }
-
-        return $this->_redirect('tareados/index/index');
     }
 }
