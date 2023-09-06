@@ -1,4 +1,10 @@
 <div id="app">
+    <form action="<?= $block->getUrl('tareados/index/save') ?>" method="post">
+        <input type="text" name="field" />
+
+        <button type="submit">Submit</button>
+    </form>
+    
     <div v-if="<?= $block->getBoolean() ? 'true' : 'false' ?>">
         <h2 class="text-center mb-4">Ingrese los datos de su tarjeta: </h2>
         <formulario :props-mostrar="<?= $block->getBoolean() ? 'true' : 'false' ?>"></formulario>
@@ -9,6 +15,7 @@
         </div>
         <img src="https://static.vecteezy.com/system/resources/previews/004/435/751/non_2x/404-error-page-with-black-cat-illustrations-not-found-system-updates-uploading-operation-computing-installation-programs-vector.jpg" ></img>
     </div>
+    
 </div>
 <style>
     .card-cartao {
