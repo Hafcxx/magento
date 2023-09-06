@@ -1,12 +1,13 @@
 <div id="app">
-    <h1>Hola mundo! </h1>
-    <formulario :props-mostrar="<?= $block->getBoolean() ? 'true' : 'false' ?>"></formulario>
     <div v-if="<?= $block->getBoolean() ? 'true' : 'false' ?>">
-        <h1 class="valor-Prueba">OK</h1>
+        <h2 class="text-center mb-4">Ingrese los datos de su tarjeta: </h2>
+        <formulario :props-mostrar="<?= $block->getBoolean() ? 'true' : 'false' ?>"></formulario>
     </div>
     <div v-else>
-        <h2>Error</h2>
-        <img src="https://static.vecteezy.com/system/resources/previews/004/435/751/non_2x/404-error-page-with-black-cat-illustrations-not-found-system-updates-uploading-operation-computing-installation-programs-vector.jpg" width="750"></img>
+        <div class="alert alert-warning" role="alert">
+            Error
+        </div>
+        <img src="https://static.vecteezy.com/system/resources/previews/004/435/751/non_2x/404-error-page-with-black-cat-illustrations-not-found-system-updates-uploading-operation-computing-installation-programs-vector.jpg" ></img>
     </div>
 </div>
 <style>
