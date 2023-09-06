@@ -1,14 +1,61 @@
 <div id="app">
-    <h1>Resultado: </h1>
-    <div v-if="<?= $block->getBoolean()? 'true':'false'?>">
-        <formulario respuesta="OK"></formulario>
+    <h1>Hola mundo! </h1>
+    <formulario :props-mostrar="<?= $block->getBoolean() ? 'true' : 'false' ?>"></formulario>
+    <div v-if="<?= $block->getBoolean() ? 'true' : 'false' ?>">
+        <h1 class="valor-Prueba">OK</h1>
     </div>
-    <div v-else >
-        <formulario respuesta="ERROR>"></formulario>
+    <div v-else>
+        <h2>Error</h2>
+        <img src="https://static.vecteezy.com/system/resources/previews/004/435/751/non_2x/404-error-page-with-black-cat-illustrations-not-found-system-updates-uploading-operation-computing-installation-programs-vector.jpg" width="750"></img>
     </div>
 </div>
-<script>
-    var boleano = <?= $block->getBoolean()? 'true':'false' ?>;
+<style>
+    .card-cartao {
+        display: flex;
+        width: 736px;
+        padding: 32px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 48px;
+        flex-shrink: 0;
+        background-color: #111827;
+        margin: 0 auto;
+        border-radius: 15px;
+    }
 
-    //$('#id').html(boleano)
-</script>
+    .column {
+        flex: 1;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        background-color: #E5E7EB;
+        color: #111827;
+        transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus {
+        border-color: #9333EA;
+        outline: none;
+    }
+
+    label {
+        color: white;
+    }
+
+    .btn-submit-c {
+        width: 100%;
+        height: 35px;
+        border-radius: 8px;
+    }
+</style>

@@ -1,24 +1,20 @@
 require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
     const { createApp, ref, onMounted, defineProps, defineComponent } = Vue
 
-    const componenteFormulario = defineComponent({
+     const componenteFormulario = defineComponent({
         name: 'formulario',
-        props:{
-            propsMostrar:{
+        props: {
+            propsMostrar: {
                 type: Boolean
-            },
-            respuesta: {
-                type: String
             }
         },
-        setup(props) {
-            const bandera = ref(false)
-            const obtenerBandera = async() =>{
+        setup() {
+            const obtenerBandera = async () => {
                 await $.ajax({
                     url: 'http://magento.test/tareados/index/Tarea',
                     type: 'GET',
                     dataType: 'json',
-                    complete: function(response) {             
+                    complete: function (response) {
                         bandera.value = response.responseJSON.bandera
                     },
                     error: function (xhr, status, errorThrown) {
@@ -26,14 +22,45 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                     }
                 });
             }
-            onMounted(()=>{
+            onMounted(() => {
                 obtenerBandera()
             })
-            return {
-                bandera
-            }
         },
-        template: "h2<h1>Bandera del prop: {{ propsMostrar }}</h1> <p>Recibido del controlador por ajax: {{ bandera }}</p>"
+        template: `
+        <div class="container">
+        <div class="card-cartao">
+            <div class="column">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="numero">Número de Tarjeta:</label>
+                        <input type="text" class="form-control" id="numero" name="numero" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre en la Tarjeta:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="vencimiento">Fecha de Vencimiento:</label>
+                            <input type="text" class="form-control" id="vencimiento" name="vencimiento" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit-c">Enviar</button>
+                </form>
+            </div>
+            <div class="column">
+                <img src="https://www.nerdwallet.com/cdn-cgi/image/width=1800,quality=85/cdn/images/marketplace/credit_cards/c9d8dc74-c50c-11ed-b641-0344f3508f63/bc7017055af8fbe33bffac4c37fd12c998b92f418024ff91aa8dc3056546e815.png" alt="Tarjeta de crédito">
+            </div>
+        </div>
+    </div>
+        `
     })
 
     const componenteProductos = defineComponent({
