@@ -90,7 +90,7 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                     error: function (xhr, status, errorThrown) {
                         console.log('Error happens. Try again.');
                     }
-                });*/
+                });
             })
         }
     }).mount('#app')
