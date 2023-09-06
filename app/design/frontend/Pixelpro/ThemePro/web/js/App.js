@@ -41,16 +41,24 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                     mensaje_numero.value = 'Debe ingresar el número de la tarjeta.'
                     return
                 }
+                if(formulario.value.numero.length != 19){
+                    mensaje_numero.value = 'Debe tener 16 dígitos'
+                    return
+                }
                 if(!formulario.value.nombre){
                     mensaje_nombre.value = 'Debe ingresar el nombre de la tarjeta.'
                     return
                 }
-                if(!formulario.value.vencimiento){
+                if(!formulario.value.vencimiento || formulario.value.vencimiento.length < 5){
                     mensaje_vencimiento.value = 'Debe ingresar la fecha de vencimiento de la tarjeta.'
                     return
                 }
                 if(!formulario.value.cvv){
                     mensaje_cvv.value = 'Debe ingresar el cvv de la tarjeta.'
+                    return
+                }
+                if(formulario.value.cvv.length != 3){
+                    mensaje_cvv.value = 'Debe tener 3 dígitos'
                     return
                 }
                 $.ajax({
@@ -165,7 +173,7 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                             <div class="col mb-3">
                                 <label for="cvv">CVV:</label>
                                 <input type="text" class="form-control mb-0" v-model="formulario.cvv" name="cvv" placeholder="CVV" maxlength="3" @blur="blurInput('cvv')" @keypress="validarSoloNumeros" required>
-                                <p v-if="mensaje_cvv">{{mensaje_cvv}}</p>
+                                <p v-if="mensaje_cvv" style="color:orange;">{{mensaje_cvv}}</p>
                             </div>
                         </div>
 
