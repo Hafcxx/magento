@@ -1,5 +1,5 @@
 <?php
-namespace Taller\TareaTres\Controller\Index;
+namespace Taller\TareaDos\Controller\Page;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
