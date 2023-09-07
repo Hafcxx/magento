@@ -29,7 +29,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 						'numero',
 						\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
 						null,
-						['nullable => false'],
+						['nullable' => false],
 						'Número'
 					)
 					->addColumn(
@@ -50,7 +50,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 						'cvv',
 						\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
 						null,
-						['nullable => false'],
+						['nullable' => false],
 						'Cvv'
 					)
 					
