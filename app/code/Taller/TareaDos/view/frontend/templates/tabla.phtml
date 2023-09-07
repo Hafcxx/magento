@@ -1,0 +1,28 @@
+<?php 
+$tarjetasCollection = $block->getTarjetasCollection();
+?>
+<div class="container">
+    <h3>Tarjetas</h3>
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Numero</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Vencimiento</th>
+                <th scope="col">Cvv</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($tarjetasCollection as $contacto) :?>
+            <tr>
+                <td><?= $contacto->getData()["id"] ?></td>
+                <td><?= $contacto->getData()["numero"] ?></td>
+                <td><?= json_decode(json_encode($contacto->getData()))->nombre ?></td>
+                <td><?= $contacto->getData()["vencimiento"] ?></td>
+                <td><?= ((object)$contacto->getData())->cvv ?></td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+</div>

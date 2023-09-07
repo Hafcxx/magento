@@ -8,7 +8,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 	public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
 		$installer = $setup;
 		$installer->startSetup();
-		if(version_compare($context->getVersion(), '1.3.0', '<')) {
+		if(true) {
 			if (!$installer->tableExists('tarjetas')) {
 				$table = $installer->getConnection()->newTable(
 					$installer->getTable('tarjetas')
@@ -67,6 +67,19 @@ class UpgradeSchema implements UpgradeSchemaInterface
 					\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
 				);
 			}else{
+				/*
+				$tableName = $setup->getTable('tarjetas');
+
+				$setup->getConnection()->addColumn(
+					$tableName,
+					'cvv',
+					[
+						'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+						'nullable' => true,
+						'comment' => 'Cvv'
+					]
+				);
+				*/
 			}
 		}
 		$installer->endSetup();
