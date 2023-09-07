@@ -63,21 +63,26 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                 }
                 $.ajax({
                     url: props.urlGuardar,
-                    data: { nombre: formulario.value.nombre, 
-                        numero: parseInt(formulario.value.numero.replace(' ', '')), 
-                        cvv: parseInt(formulario.value.cvv),
+                    data: { 
+                        nombre: formulario.value.nombre, 
+                        numero: formulario.value.numero.replace(/\s/g, ''), 
+                        cvv: formulario.value.cvv,
                         vencimiento: formulario.value.vencimiento
                     },
                     type: 'POST',
                     dataType: 'json',
                     complete: function (response) {
-                        formulario.value.nombre = ''
-                        formulario.value.numero = ''
-                        formulario.value.cvv = null
-                        formulario.value.vencimiento = ''
+                        if(response.error){
+                            formulario.value.nombre = ''
+                            formulario.value.numero = ''
+                            formulario.value.cvv = null
+                            formulario.value.vencimiento = ''
+                        }else {
+                            console.log('Error : ', response.mensaje);
+                        }
                     },
                     error: function (xhr, status, errorThrown) {
-                        console.log('Error happens. Try again.');
+                        console.log('Error petición save: ', status, errorThrown);
                     }
                 });
             }

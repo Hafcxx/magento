@@ -27,10 +27,7 @@ class Save extends Action
                 $data = $this->getRequest()->getPostValue();
                 
                 /*
-                $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
-                $result->setData(['message' => $data['numero']]);
-                
-                return $result;
+               
                 */
                 if (!is_numeric($data['numero'])) {
                     throw new \Exception('El número de tarjeta es invalido');
@@ -41,11 +38,21 @@ class Save extends Action
                     $this->Tarjeta->save();
                     
                     $this->messageManager->addSuccessMessage(__('Tarjeta guardada correctamente'));
-                    return $resultRedirect->setPath('*/*');
+                    $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+                    $result->setData(['error'=> false,
+                    'mensaje'=>'Tarjeta guardada']);
+                    
+                    return $result;
+                    //return $resultRedirect->setPath('*/*');
                 }
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage(__('Error: '.$e->getMessage()));
-                return $resultRedirect->setPath('*/*');
+                $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+                $result->setData(['error'=> false,
+                    'mensaje' =>'Tarjeta guardada']);
+                    
+                    return $result;
+                //return $resultRedirect->setPath('*/*');
             }
         }
     }
