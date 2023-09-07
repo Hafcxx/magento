@@ -63,7 +63,11 @@ require(['vue', 'jquery', 'domReady!'], (vue, $)=>{
                 }
                 $.ajax({
                     url: props.urlGuardar,
-                    data: { ...formulario.value },
+                    data: { nombre: formulario.value.nombre, 
+                        numero: parseInt(formulario.value.numero.replace(' ', '')), 
+                        cvv: parseInt(formulario.value.cvv),
+                        vencimiento: formulario.value.vencimiento
+                    },
                     type: 'POST',
                     dataType: 'json',
                     complete: function (response) {
