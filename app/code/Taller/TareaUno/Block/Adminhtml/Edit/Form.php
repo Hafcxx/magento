@@ -47,8 +47,14 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      *
      * @return $this
      */
-    protected function _prepareForm()
+    public function setCustomData(array $customData)
     {
+        $this->customData = $customData;
+    }
+
+    protected function _prepareForm()
+    {   
+        $model = $this->_coreRegistry->registry('contacto');
 
         $form = $this->_formFactory->create(
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post']]
@@ -91,8 +97,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             'name' => 'telefono',
             'label' => __('Teléfono'),
             'telefono' => __('Teléfono'),
-            'required' => true,
-            'class' => 'validate-phone'
+            'required' => true
             ]
         );
     
@@ -107,6 +112,19 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
+        if (null !== $model){
+
+            $fieldset->addField(
+                'id',
+                'hidden',
+                [
+                    'name' => 'id',
+                    'value' => $model->getId(),
+                ]
+            );
+            $form->setValues($model->getData());
+
+        }
         $form->setUseContainer(true);
         $this->setForm($form);
 

@@ -27,6 +27,11 @@ class Save extends \Magento\Backend\App\Action
 
             $model->setData($data);
 
+            //Si existe un id, se le asigna al modelo antes de guardarlo (se edita)
+            if (isset($data['id'])) {
+                $model->setEntityId($data['id']);
+            }
+
             $this->_eventManager->dispatch(
                 'blog_post_prepare_save',
                 ['post' => $model, 'request' => $this->getRequest()]
