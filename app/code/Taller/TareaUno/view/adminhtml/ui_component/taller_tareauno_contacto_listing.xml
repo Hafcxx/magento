@@ -140,6 +140,13 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn class="Taller\TareaUno\Ui\Component\Listing\Column\EditActions" name="editar">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>
        
     </columns>
 </listing>
